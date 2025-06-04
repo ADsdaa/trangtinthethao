@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <title><%= title %> - Trang tin điện tử</title>
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --success-color: #1cc88a;
+            --danger-color: #e74a3b;
+            --warning-color: #f6c23e;
+            --gray-100: #f8f9fc;
+            --gray-200: #eaecf4;
+            --gray-600: #858796;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: #f8f9fc;
+            border-bottom: 1px solid #e3e6f0;
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            color: #4e73df;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .table {
+            margin-bottom: 0;
+            color: #5a5c69;
+            font-size: 0.9rem;
+        }
+        
+        .table thead th {
+            background-color: var(--gray-100);
+            border-bottom: 2px solid #e3e6f0;
+            font-weight: 600;
+            padding: 1rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--gray-600);
+            vertical-align: middle;
+        }
+        
+        .table tbody tr {
+            transition: all 0.15s ease;
+            border-bottom: 1px solid #e3e6f0;
+        }
+        
+        .table tbody tr:hover {
+            background-color: var(--gray-100);
+        }
+        
+        .table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-top: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 0.35rem;
+            font-weight: 600;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2e59d9;
+            border-color: #2653d4;
+            transform: translateY(-1px);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+        }
+        
+        .status-approved {
+            color: var(--success-color);
+            font-size: 1.25rem;
+        }
+        
+        .status-pending {
+            color: var(--warning-color);
+            font-size: 1.25rem;
+        }
+        
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover {
+            background-color: rgba(78, 115, 223, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .action-btn.delete:hover {
+            background-color: rgba(231, 74, 59, 0.1);
+        }
+        
+        .article-title {
+            font-weight: 600;
+            color: #4e73df;
+            margin-bottom: 0.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .article-meta {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+        
+        .article-meta span {
+            display: inline-block;
+            margin-right: 0.75rem;
+        }
+        
+        .article-meta i {
+            margin-right: 0.25rem;
+        }
+        
+        .badge-topic {
+            display: inline-block;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+            background-color: rgba(78, 115, 223, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .empty-state {
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .empty-state-icon {
+            font-size: 3.5rem;
+            color: #dddfeb;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state-title {
+            font-weight: 600;
+            color: #5a5c69;
+            margin-bottom: 0.5rem;
+        }
+        
+        .empty-state-text {
+            color: #b7b9cc;
+            margin-bottom: 1.5rem;
+        }
+        
+        .approval-toggle {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .approval-toggle:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Menu ngang -->
+        <%- include('navbar') %>
+        
+        <!-- Nội dung chính -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <span><%= title %></span>
+                <a href="/baiviet/them" class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-1"></i> Đăng bài viết
+                </a>
+            </div>
+            <div class="card-body p-0">
+                <% if (baiviet.length > 0) { %>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th width="5%">#</th>
+                                    <th width="40%">Bài viết</th>
+                                    <th width="15%">Chủ đề</th>
+                                    <th width="15%">Người đăng</th>
+                                    <th width="10%">Ngày đăng</th>
+                                    <th width="5%">Trạng thái</th>
+                                    <th width="10%">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% var stt = 1; %>
+                                <% baiviet.forEach(bv => { %>
+                                    <tr>
+                                        <td class="fw-bold"><%= stt++ %></td>
+                                        <td>
+                                            <div class="article-title"><%= bv.TieuDe %></div>
+                                            <div class="article-meta">
+                                                <span><i class="bi bi-eye"></i> 0 lượt xem</span>
+                                                <span><i class="bi bi-chat"></i> 0 bình luận</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge-topic"><%= bv.ChuDe.TenChuDe %></span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-2">
+                                                    <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold"><%= bv.TaiKhoan.HoVaTen %></div>
+                                                    <div class="text-muted small"><%= bv.TaiKhoan.TenDangNhap %></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="small">
+                                            <%= new Date(bv.NgayDang.toISOString()).toLocaleDateString("vi-VN") %>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="/baiviet/duyet/<%= bv._id %>" class="approval-toggle">
+                                                <% if(bv.KiemDuyet == 1) { %>
+                                                    <i class="bi bi-check-circle-fill status-approved" title="Đã duyệt"></i>
+                                                <% } else { %>
+                                                    <i class="bi bi-x-circle-fill status-pending" title="Chờ duyệt"></i>
+                                                <% } %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="/baiviet/sua/<%= bv._id %>" class="action-btn text-primary" title="Sửa">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                                <a href="/baiviet/xoa/<%= bv._id %>" class="action-btn delete text-danger" title="Xóa" 
+                                                   onclick="return confirm('Bạn có muốn xóa bài viết <%= bv.TieuDe %> không?');">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% } else { %>
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                        <h3 class="empty-state-title">Không có bài viết nào</h3>
+                        <p class="empty-state-text">Bạn chưa có bài viết nào trong hệ thống. Hãy đăng bài viết mới bằng cách nhấn vào nút "Đăng bài viết".</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <%- include('footer') %>
+    </div>
+    
+    <%- include('javascript') %>
+</body>
+
+</html>

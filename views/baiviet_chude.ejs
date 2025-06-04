@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="Trang tin điện tử nhiều người xem nhất vũ trụ." />
+	<meta name="author" content="Nguyễn Hoàng Tùng" />
+	<title><%= title %> - Trang tin điện tử</title>
+	<link href="https://trangtin-jcr5.onrender.com/css/app.css" rel="stylesheet" />
+	<style>
+		/* Footer Styles */
+		.site-footer {
+		  background-color: #1a1a1a;
+		  color: #ffffff;
+		  padding: 60px 0 0;
+		  font-size: 14px;
+		}
+
+		.footer-brand {
+		  margin-bottom: 20px;
+		}
+
+		.footer-brand .logo-icon {
+		  color: #e10600;
+		  font-size: 28px;
+		}
+
+		.footer-brand .logo-text {
+		  font-size: 24px;
+		  font-weight: 700;
+		  color: #ffffff;
+		}
+
+		.footer-about {
+		  color: #b3b3b3;
+		  line-height: 1.6;
+		}
+
+		.footer-title {
+		  color: #ffffff;
+		  font-size: 18px;
+		  font-weight: 600;
+		  margin-bottom: 20px;
+		  position: relative;
+		  padding-bottom: 10px;
+		}
+
+		.footer-title:after {
+		  content: '';
+		  position: absolute;
+		  left: 0;
+		  bottom: 0;
+		  width: 40px;
+		  height: 2px;
+		  background-color: #e10600;
+		}
+
+		.footer-links {
+		  list-style: none;
+		  padding: 0;
+		  margin: 0;
+		}
+
+		.footer-links li {
+		  margin-bottom: 10px;
+		}
+
+		.footer-links a {
+		  color: #b3b3b3;
+		  text-decoration: none;
+		  transition: all 0.3s;
+		}
+
+		.footer-links a:hover {
+		  color: #ffffff;
+		  padding-left: 5px;
+		}
+
+		.footer-contact {
+		  list-style: none;
+		  padding: 0;
+		  margin: 0;
+		}
+
+		.footer-contact li {
+		  margin-bottom: 15px;
+		  color: #b3b3b3;
+		}
+
+		.footer-contact i {
+		  color: #e10600;
+		  width: 20px;
+		  text-align: center;
+		}
+
+		.social-links {
+		  display: flex;
+		  gap: 15px;
+		}
+
+		.social-link {
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  width: 36px;
+		  height: 36px;
+		  border-radius: 50%;
+		  background-color: #333333;
+		  color: #ffffff;
+		  transition: all 0.3s;
+		}
+
+		.social-link:hover {
+		  background-color: #e10600;
+		  transform: translateY(-3px);
+		}
+
+		.footer-newsletter h6 {
+		  color: #ffffff;
+		  margin-bottom: 15px;
+		  font-weight: 500;
+		}
+
+		.footer-newsletter .form-control {
+		  background-color: #333333;
+		  border: none;
+		  color: #ffffff;
+		  height: 45px;
+		  border-radius: 0;
+		}
+
+		.footer-newsletter .btn-primary {
+		  background-color: #e10600;
+		  border: none;
+		  border-radius: 0;
+		  height: 45px;
+		  min-width: 45px;
+		}
+
+		.footer-bottom {
+		  border-top: 1px solid #333333;
+		  padding: 20px 0;
+		  margin-top: 40px;
+		}
+
+		.copyright {
+		  color: #b3b3b3;
+		}
+
+		.footer-legal-links {
+		  list-style: none;
+		  padding: 0;
+		  margin: 0;
+		  display: flex;
+		  justify-content: flex-end;
+		  gap: 20px;
+		}
+
+		.footer-legal-links a {
+		  color: #b3b3b3;
+		  text-decoration: none;
+		  transition: all 0.3s;
+		}
+
+		.footer-legal-links a:hover {
+		  color: #ffffff;
+		}
+
+		/* Responsive */
+		@media (max-width: 991.98px) {
+		  .site-footer {
+			padding: 40px 0 0;
+		  }
+		  
+		  .footer-legal-links {
+			justify-content: flex-start;
+			margin-top: 15px;
+		  }
+		}
+
+		@media (max-width: 767.98px) {
+		  .footer-title {
+			margin-top: 20px;
+		  }
+		}
+		</style>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
+			<div class="container">
+				<button class="navbar-toggler order-2 order-md-1" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbar-left navbar-right" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse order-3 order-md-2" id="navbar-left">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" href="#" id="chuyenmuc" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chuyên mục</a>
+							<div class="dropdown-menu" aria-labelledby="chuyenmuc">
+								<% if(typeof chuyenmuc !== "undefined") { chuyenmuc.forEach(cd => { %>
+									<a class="dropdown-item" href="/baiviet/chude/<%= cd._id %>"><%= cd.TenChuDe %></a>
+								<% }); } %>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<a class="navbar-brand mx-auto order-1 order-md-3" 
+				<a href="/" class="d-flex align-items-center">
+					<span class="logo-icon me-2"><i class="fas fa-running"></i></span>
+					<span class="logo-text">SportsNews</span>
+				</a>
+				<div class="collapse navbar-collapse order-4 order-md-4" id="navbar-right">
+					<ul class="navbar-nav ms-auto">
+						<% if(typeof session === "undefined" || !session.MaNguoiDung) { %>
+							<li class="nav-item">
+								<a class="nav-link" href="/dangky">Đăng ký</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/dangnhap">Đăng nhập</a>
+							</li>
+						<% } else { %>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin">Quản lý</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/dangxuat">Đăng xuất</a>
+							</li>
+						<% } %>
+					</ul>
+					<form class="form-inline" role="search" action="/timkiem" method="post">
+						<input name="tukhoa" class="search js-search form-control form-control-rounded me-sm-2" type="text" title="Bạn muốn tìm gì?" placeholder="Tìm kiếm..." aria-label="Search" />
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main class="main pt-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+                    <div class="text-center">
+                        <span class="text-muted">Chuyên mục:</span>
+                        <h3><%= (typeof chude !== "undefined") ? chude.TenChuDe : 'N/A' %></h3>
+                        <hr />
+                    </div>
+                    <div class="row">
+						<% if(typeof baiviet !== "undefined") { %>
+							<%
+								var chunkSize = 4;
+								for(var i = 0; i < baiviet.length; i += chunkSize) {
+									var chunk = baiviet.slice(i, i + chunkSize);
+							%>
+								<div class="col-12">
+									<% chunk.forEach(bv => { %>
+										<article class="card mb-4">
+											<header class="card-header">
+												<div class="card-meta">
+													<a href="#"><time class="timeago" datetime="<%= bv.NgayDang %>"></time></a> thuộc <a href="/baiviet/chude/<%= bv.ChuDe._id %>"><%= bv.ChuDe.TenChuDe %></a>
+												</div>
+												<a href="/baiviet/chitiet/<%= bv._id %>">
+													<h4 class="card-title"><%= bv.TieuDe %></h4>
+												</a>
+											</header>
+											<a href="/baiviet/chitiet/<%= bv._id %>">
+												<img class="card-img" src="<%- firstImage(bv.NoiDung) %>" alt="" />
+											</a>
+											<div class="card-body">
+												<p class="card-text"><%= bv.TomTat %></p>
+											</div>
+										</article>
+									<% }); %>
+								</div>
+							<% } %>
+						<% } else { %>
+							<div class="alert alert-primary" role="alert">
+								<h4 class="alert-heading">Rất tiếc!</h4>
+								<p>Không có bài viết nào trong chuyên mục này.</p>
+								<hr>
+								<div class="btn-list">
+									<a class="btn btn-primary" type="button" href="/">Về trang chủ</a>
+								</div>
+							</div>
+						<% } %>
+                    </div>
+					<nav>
+						<ul class="pagination justify-content-center">
+							<li class="page-item disabled">
+								<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Về trước</a>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#">Về sau</a>
+							</li>
+						</ul>
+					</nav>
+                </div>
+				<div class="col-md-3 ms-auto">
+					<aside class="sidebar">
+						<div class="card mb-4">
+							<div class="card-body">
+								<h4 class="card-title">Giới thiệu</h4>
+								<p class="card-text">Đọc tin tức trên trang web này sẽ giúp bạn có cái nhìn khách quan về cuộc sống. Đừng quên chia sẻ trang này cho toàn bộ vũ trụ biết nhé. Mến yêu.</p>
+							</div>
+						</div>
+					</aside>
+					<aside class="sidebar sidebar-sticky">
+						<div class="card mb-4">
+							<div class="card-body">
+								<h4 class="card-title">Thẻ</h4>
+								<% if(typeof chuyenmuc !== "undefined") { chuyenmuc.forEach(cd => { %>
+									<a class="btn btn-light btn-sm mb-1" href="/baiviet/chude/<%= cd._id %>"><%= cd.TenChuDe %></a>
+								<% }); } %>
+							</div>
+						</div>
+						<div class="card mb-4">
+							<div class="card-body">
+								<h4 class="card-title">Xem nhiều nhất</h4>
+								<% if(typeof xemnhieunhat !== "undefined") { xemnhieunhat.forEach(bv => { %>
+									<a href="/baiviet/chitiet/<%= bv._id %>" class="d-inline-block mt-3">
+										<h4 class="h6"><%= bv.TieuDe %></h4>
+										<img class="card-img" src="<%- firstImage(bv.NoiDung) %>" alt="" />
+									</a>
+									<time class="timeago" datetime="<%= bv.NgayDang %>"></time> thuộc <%= bv.ChuDe.TenChuDe %>
+								<% }); } %>
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="row">
+        <!-- Column 1: About and Logo -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <div class="footer-brand">
+            <a href="/" class="d-flex align-items-center">
+              <span class="logo-icon me-2"><i class="fas fa-running"></i></span>
+              <span class="logo-text">SportsNews</span>
+            </a>
+          </div>
+          <p class="footer-about mt-3">
+            Trang tin thể thao hàng đầu, cập nhật tin tức mới nhất 24/7 về các môn thể thao đa dạng từ bóng đá, tennis, bóng rổ đến các môn thể thao điện tử.
+          </p>
+          <div class="social-links mt-3">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h5 class="footer-title">Liên kết nhanh</h5>
+          <ul class="footer-links">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/tin-moi-nhat">Tin mới nhất</a></li>
+            <li><a href="/lich-thi-dau">Lịch thi đấu</a></li>
+            <li><a href="/ket-qua">Kết quả</a></li>
+            <li><a href="/video">Video nổi bật</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Sports Categories -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="footer-title">Môn thể thao</h5>
+          <div class="row">
+            <div class="col-6">
+              <ul class="footer-links">
+                <li><a href="/bong-da">Bóng đá</a></li>
+                <li><a href="/tennis">Tennis</a></li>
+                <li><a href="/bong-ro">Bóng rổ</a></li>
+                <li><a href="/cau-long">Cầu lông</a></li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="footer-links">
+                <li><a href="/bong-chuyen">Bóng chuyền</a></li>
+                <li><a href="/esports">Thể thao điện tử</a></li>
+                <li><a href="/the-thao-khac">Khác</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 4: Contact Info -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">Liên hệ</h5>
+          <ul class="footer-contact">
+            <li class="d-flex align-items-center">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <span>123 Đường Thể Thao, Quận 1, TP.HCM</span>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="fas fa-phone-alt me-2"></i>
+              <span>(+84) 123 456 789</span>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="fas fa-envelope me-2"></i>
+              <span>info@sportsnews.com</span>
+            </li>
+          </ul>
+          
+          <div class="footer-newsletter mt-3">
+            <h6>Đăng ký nhận bản tin</h6>
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Email của bạn">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="copyright">
+            &copy; 2023 <strong>SportsNews</strong>. Bảo lưu mọi quyền.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="footer-legal-links">
+            <li><a href="/dieu-khoan">Điều khoản sử dụng</a></li>
+            <li><a href="/chinh-sach">Chính sách bảo mật</a></li>
+            <li><a href="/lien-he">Liên hệ quảng cáo</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+	<script src="https://trangtin-jcr5.onrender.com/js/app.js"></script>
+</body>
+</html>
