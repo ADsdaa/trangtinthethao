@@ -1,642 +1,622 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="Trang tin điện tử nhiều người xem nhất vũ trụ." />
-	<meta name="author" content="Nguyễn Hoàng Tùng" />
-	<title><%= title %> - Trang tin thể thao</title>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-	<link href="https://trangtin-jcr5.onrender.com/css/app.css" rel="stylesheet" />
-	<style>
-		:root {
-			--primary: #2563eb;
-			--primary-dark: #1d4ed8;
-			--dark: #1e293b;
-			--light: #f8fafc;
-			--gray: #64748b;
-			--light-gray: #e2e8f0;
-			--red: #dc2626;
-		}
-		
-		body {
-			font-family: 'Inter', sans-serif;
-			color: var(--dark);
-			background-color: #f1f5f9;
-			line-height: 1.6;
-		}
-		
-		/* Header */
-		.navbar {
-			box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-			padding: 1rem 0;
-			  background-color: white;
-			  box-shadow: 0 2px 10px rgba(0, 119, 182, 0.1);
-			  border-bottom: 3px solid #0077b6;
-			  color: #0077b6;
-		}
-		
-		.navbar-brand {
-			font-weight: 700;
-			font-size: 1.75rem;
-			color: var(--primary);
-		}
-		
-		.nav-link {
-			font-weight: 500;
-			color: var(--dark);
-			padding: 0.5rem 1rem !important;
-			border-radius: 0.5rem;
-		}
-		
-		.nav-link:hover, .nav-link.active {
-			color: var(--primary);
-			background-color: rgba(37, 99, 235, 0.1);
-		}
-		
-		.dropdown-menu {
-			border: none;
-			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-			border-radius: 0.5rem;
-			padding: 0.5rem 0;
-		}
-		
-		.dropdown-item {
-			padding: 0.5rem 1.5rem;
-			font-weight: 500;
-		}
-		
-		.dropdown-item:hover {
-			background-color: rgba(37, 99, 235, 0.1);
-			color: var(--primary);
-		}
-		
-		/* Search */
-		.search {
-			border-radius: 0.5rem !important;
-			border: 1px solid var(--light-gray);
-			padding: 0.5rem 1rem;
-			width: 200px;
-			transition: all 0.3s;
-		}
-		
-		.search:focus {
-			width: 250px;
-			border-color: var(--primary);
-			box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-		}
-		
-		/* Main Content */
-		.main {
-			padding-top: 6rem;
-			padding-bottom: 3rem;
-		}
-		
-		.card {
-			border: none;
-			border-radius: 0.75rem;
-			overflow: hidden;
-			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-			transition: transform 0.3s, box-shadow 0.3s;
-			margin-bottom: 1.5rem;
-			background-color: white;
-		}
-		
-		.card:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-		}
-		
-		.card-img {
-			height: 200px;
-			object-fit: cover;
-			width: 100%;
-		}
-		
-		.card-header {
-			background-color: white;
-			border-bottom: 1px solid var(--light-gray);
-			padding: 1.25rem 1.5rem 0;
-		}
-		
-		.card-body {
-			padding: 1.25rem 1.5rem;
-		}
-		
-		.card-title {
-			font-weight: 600;
-			font-size: 1.25rem;
-			margin-bottom: 0.75rem;
-			color: var(--dark);
-		}
-		
-		.card-meta {
-			font-size: 0.875rem;
-			color: var(--gray);
-			margin-bottom: 0.5rem;
-		}
-		
-		.card-text {
-			color: var(--gray);
-			font-size: 0.9375rem;
-		}
-		
-		/* Sidebar */
-		.sidebar .card {
-			margin-bottom: 1.5rem;
-		}
-		
-		.sidebar-sticky {
-			position: sticky;
-			top: 6rem;
-		}
-		
-		.btn-light {
-			background-color: var(--light-gray);
-			border: none;
-			color: var(--dark);
-			font-weight: 500;
-			margin-right: 0.5rem;
-			margin-bottom: 0.5rem;
-			border-radius: 0.5rem;
-		}
-		
-		.btn-light:hover {
-			background-color: var(--primary);
-			color: white;
-		}
-		
-		/* Newsletter */
-		.site-newsletter {
-			background-color: var(--primary);
-			color: white;
-			padding: 4rem 0;
-		}
-		
-		.site-newsletter h3 {
-			font-weight: 600;
-			margin-bottom: 1rem;
-		}
-		
-		.site-newsletter .text-muted {
-			color: rgba(255,255,255,0.8) !important;
-			max-width: 600px;
-			margin: 0 auto 2rem;
-		}
-		
-		.site-newsletter .form-control {
-			border-radius: 0.5rem 0 0 0.5rem !important;
-			border: none;
-			height: 48px;
-		}
-		
-		.site-newsletter .btn-secondary {
-			background-color: var(--dark);
-			border: none;
-			border-radius: 0 0.5rem 0.5rem 0 !important;
-			height: 48px;
-			padding: 0 1.5rem;
-			font-weight: 500;
-		}
-		
-		.site-newsletter .btn-secondary:hover {
-			background-color: #0f172a;
-		}
-		
-		/* Instagram */
-		.site-instagram {
-			position: relative;
-		}
-		
-		.site-instagram .action {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			z-index: 10;
-		}
-		
-		.site-instagram .btn-light {
-			background-color: white;
-			color: var(--dark);
-			font-weight: 600;
-			padding: 0.75rem 1.5rem;
-			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-		}
-		
-		.site-instagram .photo {
-			display: block;
-			position: relative;
-			overflow: hidden;
-		}
-		
-		.site-instagram .photo:after {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: rgba(0,0,0,0.3);
-			opacity: 0;
-			transition: opacity 0.3s;
-		}
-		
-		.site-instagram .photo:hover:after {
-			opacity: 1;
-		}
-		
-		.site-instagram .img-fluid {
-			height: 100%;
-			width: 100%;
-			object-fit: cover;
-		}
-		
-		/* Footer */
-		.site-footer {
-			padding: 3rem 0;
-			color: white;
-		}
-		
-		.site-footer .nav-link {
-			color: rgba(255,255,255,0.7);
-			padding: 0.5rem 1rem;
-		}
-		
-		.site-footer .nav-link:hover {
-			color: white;
-			background-color: transparent;
-		}
-		
-		.copy {
-			text-align: center;
-			margin-top: 2rem;
-			color: rgba(255,255,255,0.6);
-			font-size: 0.875rem;
-		}
-		
-		/* Pagination */
-		.pagination .page-item {
-			margin: 0 0.25rem;
-		}
-		
-		.pagination .page-link {
-			border: none;
-			border-radius: 0.5rem !important;
-			color: var(--dark);
-			font-weight: 500;
-			min-width: 40px;
-			text-align: center;
-		}
-		
-		.pagination .page-item.active .page-link {
-			background-color: var(--primary);
-			color: white;
-		}
-		
-		.pagination .page-item.disabled .page-link {
-			color: var(--gray);
-		}
-		
-		/* Responsive */
-		@media (max-width: 767.98px) {
-			.navbar-brand {
-				font-size: 1.5rem;
-			}
-			
-			.main {
-				padding-top: 5rem;
-			}
-			
-			.site-newsletter {
-				padding: 3rem 0;
-			}
-			
-			.site-instagram .action {
-				position: relative;
-				transform: none;
-				left: auto;
-				top: auto;
-				margin: 1rem 0;
-				text-align: center;
-			}
-		}
-	</style>
-	<style>
-		/* Footer Styles */
-		.site-footer {
-		  background-color: #1a1a1a;
-		  color: #ffffff;
-		  padding: 60px 0 0;
-		  font-size: 14px;
-		}
-
-		.footer-brand {
-		  margin-bottom: 20px;
-		}
-
-		.footer-brand .logo-icon {
-		  color: #e10600;
-		  font-size: 28px;
-		}
-
-		.footer-brand .logo-text {
-		  font-size: 24px;
-		  font-weight: 700;
-		  color: #ffffff;
-		}
-
-		.footer-about {
-		  color: #b3b3b3;
-		  line-height: 1.6;
-		}
-
-		.footer-title {
-		  color: #ffffff;
-		  font-size: 18px;
-		  font-weight: 600;
-		  margin-bottom: 20px;
-		  position: relative;
-		  padding-bottom: 10px;
-		}
-
-		.footer-title:after {
-		  content: '';
-		  position: absolute;
-		  left: 0;
-		  bottom: 0;
-		  width: 40px;
-		  height: 2px;
-		  background-color: #e10600;
-		}
-
-		.footer-links {
-		  list-style: none;
-		  padding: 0;
-		  margin: 0;
-		}
-
-		.footer-links li {
-		  margin-bottom: 10px;
-		}
-
-		.footer-links a {
-		  color: #b3b3b3;
-		  text-decoration: none;
-		  transition: all 0.3s;
-		}
-
-		.footer-links a:hover {
-		  color: #ffffff;
-		  padding-left: 5px;
-		}
-
-		.footer-contact {
-		  list-style: none;
-		  padding: 0;
-		  margin: 0;
-		}
-
-		.footer-contact li {
-		  margin-bottom: 15px;
-		  color: #b3b3b3;
-		}
-
-		.footer-contact i {
-		  color: #e10600;
-		  width: 20px;
-		  text-align: center;
-		}
-
-		.social-links {
-		  display: flex;
-		  gap: 15px;
-		}
-
-		.social-link {
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  width: 36px;
-		  height: 36px;
-		  border-radius: 50%;
-		  background-color: #333333;
-		  color: #ffffff;
-		  transition: all 0.3s;
-		}
-
-		.social-link:hover {
-		  background-color: #e10600;
-		  transform: translateY(-3px);
-		}
-
-		.footer-newsletter h6 {
-		  color: #ffffff;
-		  margin-bottom: 15px;
-		  font-weight: 500;
-		}
-
-		.footer-newsletter .form-control {
-		  background-color: #333333;
-		  border: none;
-		  color: #ffffff;
-		  height: 45px;
-		  border-radius: 0;
-		}
-
-		.footer-newsletter .btn-primary {
-		  background-color: #e10600;
-		  border: none;
-		  border-radius: 0;
-		  height: 45px;
-		  min-width: 45px;
-		}
-
-		.footer-bottom {
-		  border-top: 1px solid #333333;
-		  padding: 20px 0;
-		  margin-top: 40px;
-		}
-
-		.copyright {
-		  color: #b3b3b3;
-		}
-
-		.footer-legal-links {
-		  list-style: none;
-		  padding: 0;
-		  margin: 0;
-		  display: flex;
-		  justify-content: flex-end;
-		  gap: 20px;
-		}
-
-		.footer-legal-links a {
-		  color: #b3b3b3;
-		  text-decoration: none;
-		  transition: all 0.3s;
-		}
-
-		.footer-legal-links a:hover {
-		  color: #ffffff;
-		}
-
-		/* Responsive */
-		@media (max-width: 991.98px) {
-		  .site-footer {
-			padding: 40px 0 0;
-		  }
-		  
-		  .footer-legal-links {
-			justify-content: flex-start;
-			margin-top: 15px;
-		  }
-		}
-
-		@media (max-width: 767.98px) {
-		  .footer-title {
-			margin-top: 20px;
-		  }
-		}
-		</style>
+	
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="Trang tin điện tử nhiều người xem nhất vũ trụ." />
+<meta name="author" content="Nguyễn Hoàng Tùng" />
+<title><%= title %> - Trang tin thể thao</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://trangtin-jcr5.onrender.com/css/app.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #e10600; /* Màu đỏ thể thao */
+            --primary-dark: #b90500;
+            --secondary: #1d428a; /* Màu xanh dương */
+            --dark: #121212;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        /* Header mới với gradient */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            background: white;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem !important;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        
+        /* Search bar mới */
+        .search {
+            border-radius: 50px !important;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            width: 200px;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .search::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .search:focus {
+            width: 250px;
+            background: rgba(255,255,255,0.3);
+            box-shadow: none;
+            color: white;
+        }
+        
+        /* Main content layout mới */
+        .main {
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+        
+        /* Card bài viết mới */
+        .card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background: white;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+        
+        .card-header {
+            background: white;
+            border-bottom: none;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-meta a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .card-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+        
+        .card-text {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Badge chuyên mục */
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+        
+        /* Sidebar mới */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+        }
+        
+        .sidebar .card {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .sidebar-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .sidebar-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin: 0 5px 8px 0;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        
+        /* Popular posts */
+        .popular-post {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .popular-post-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .popular-post-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+        
+        .popular-post-meta {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+        
+        /* Pagination mới */
+        .pagination .page-item {
+            margin: 0 5px;
+        }
+        
+        .pagination .page-link {
+            border: none;
+            border-radius: 8px !important;
+            color: var(--dark);
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(225, 6, 0, 0.3);
+        }
+        
+        .pagination .page-link:hover {
+            background: var(--light-gray);
+        }
+        
+        /* Footer mới */
+        .site-footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 0;
+            position: relative;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Newsletter form */
+        .newsletter-form {
+            position: relative;
+        }
+        
+        .newsletter-input {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 12px 20px;
+            width: 100%;
+        }
+        
+        .newsletter-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Responsive */
+        @media (max-width: 991.98px) {
+            .main {
+                padding-top: 80px;
+            }
+            
+            .sidebar {
+                margin-top: 40px;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .search {
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .search:focus {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
-			<div class="container">
-				<button class="navbar-toggler order-2 order-md-1" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbar-left navbar-right" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse order-3 order-md-2" id="navbar-left">
-					<ul class="navbar-nav me-auto">
-						<li class="nav-item dropdown active">
-							<a class="nav-link dropdown-toggle" href="#" id="chuyenmuc" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chuyên mục</a>
-							<div class="dropdown-menu" aria-labelledby="chuyenmuc">
-								<% if(typeof chuyenmuc !== "undefined") { chuyenmuc.forEach(cd => { %>
-									<a class="dropdown-item" href="/baiviet/chude/<%= cd._id %>"><%= cd.TenChuDe %></a>
-								<% }); } %>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<a class="navbar-brand mx-auto order-1 order-md-3" 
-				<a href="/" class="d-flex align-items-center">
-					<span class="logo-icon me-2"><i class="fas fa-running"></i></span>
-					<span class="logo-text">SportsNews</span>
-				</a>
-				<div class="collapse navbar-collapse order-4 order-md-4" id="navbar-right">
-					<ul class="navbar-nav ms-auto">
-						<% if(typeof session === "undefined" || !session.MaNguoiDung) { %>
-							<li class="nav-item">
-								<a class="nav-link" href="/dangky">Đăng ký</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/dangnhap">Đăng nhập</a>
-							</li>
-						<% } else { %>
-							<li class="nav-item">
-								<a class="nav-link" href="/admin">Quản lý</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/dangxuat">Đăng xuất</a>
-							</li>
-						<% } %>
-					</ul>
-					<form class="form-inline" role="search" action="/timkiem" method="post">
-						<input name="tukhoa" class="search js-search form-control form-control-rounded me-sm-2" type="text" title="Bạn muốn tìm gì?" placeholder="Tìm kiếm..." aria-label="Search" />
-					</form>
-				</div>
-			</div>
-		</nav>
-	</header>
-	<main class="main pt-4">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-9">
-					<div class="row">
-						<%
-							if(typeof baiviet !== "undefined") {
-								var chunkSize = 4;
-								for(var i = 0; i < baiviet.length; i += chunkSize) {
-									var chunk = baiviet.slice(i, i + chunkSize);
-						%>
-								<div class="col-md-4">
-									<% chunk.forEach(bv => { %>
-										<article class="card mb-4">
-											<header class="card-header">
-												<div class="card-meta">
-													<a href="#"><time class="timeago" datetime="<%= bv.NgayDang %>"></time></a> thuộc <a href="/baiviet/chude/<%= bv.ChuDe._id %>"><%= bv.ChuDe.TenChuDe %></a>
-												</div>
-												<a href="/baiviet/chitiet/<%= bv._id %>">
-													<h4 class="card-title"><%= bv.TieuDe %></h4>
-												</a>
-											</header>
-											<a href="/baiviet/chitiet/<%= bv._id %>">
-												<img class="card-img" src="<%- firstImage(bv.NoiDung) %>" alt="" />
-											</a>
-											<div class="card-body">
-												<p class="card-text"><%= bv.TomTat %></p>
-											</div>
-										</article>
-									<% }); %>
-								</div>
-						<%
-								}
-							}
-						%>
-					</div>
-					<nav>
-						<ul class="pagination justify-content-center">
-							<li class="page-item disabled">
-								<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Về trước</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#">Về sau</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-				<div class="col-md-3 ms-auto">
-					<aside class="sidebar">
-						<div class="card mb-4">
-							<div class="card-body">
-								<h4 class="card-title">Giới thiệu</h4>
-								<p class="card-text">Đọc tin tức trên trang web này sẽ giúp bạn có cái nhìn khách quan về cuộc sống. Đừng quên chia sẻ trang này cho toàn bộ vũ trụ biết nhé. Mến yêu.</p>
-							</div>
-						</div>
-					</aside>
-					<aside class="sidebar sidebar-sticky">
-						<div class="card mb-4">
-							<div class="card-body">
-								<h4 class="card-title">Thẻ</h4>
-								<% if(typeof chuyenmuc !== "undefined") { chuyenmuc.forEach(cd => { %>
-									<a class="btn btn-light btn-sm mb-1" href="/baiviet/chude/<%= cd._id %>"><%= cd.TenChuDe %></a>
-								<% }); } %>
-							</div>
-						</div>
-						<div class="card mb-4">
-							<div class="card-body">
-								<h4 class="card-title">Xem nhiều nhất</h4>
-								<% if(typeof xemnhieunhat !== "undefined") { xemnhieunhat.forEach(bv => { %>
-									<a href="/baiviet/chitiet/<%= bv._id %>" class="d-inline-block mt-3">
-										<h4 class="h6"><%= bv.TieuDe %></h4>
-										<img class="card-img" src="<%- firstImage(bv.NoiDung) %>" alt="" />
-									</a>
-									<time class="timeago" datetime="<%= bv.NgayDang %>"></time> thuộc <%= bv.ChuDe.TenChuDe %>
-								<% }); } %>
-							</div>
-						</div>
-					</aside>
-				</div>
-			</div>
-		</div>
-	</main>
-<footer class="site-footer">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <span class="logo-icon"><i class="fas fa-running"></i></span>
+                    <span>SportsNews</span>
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="chuyenmuc" data-bs-toggle="dropdown">Chuyên mục</a>
+                            <div class="dropdown-menu">
+                                <% if(typeof chuyenmuc !== "undefined") { chuyenmuc.forEach(cd => { %>
+                                    <a class="dropdown-item" href="/baiviet/chude/<%= cd._id %>"><%= cd.TenChuDe %></a>
+                                <% }); } %>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tin-moi-nhat">Tin mới</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/video">Video</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/lich-thi-dau">Lịch thi đấu</a>
+                        </li>
+                    </ul>
+                    
+                    <form class="d-flex ms-2" role="search" action="/timkiem" method="post">
+                        <input name="tukhoa" class="search form-control" type="text" placeholder="Tìm kiếm..." />
+                        <button class="btn btn-search" type="submit" style="display:none"></button>
+                    </form>
+                    
+                    <ul class="navbar-nav ms-3">
+                        <% if(typeof session === "undefined" || !session.MaNguoiDung) { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dangky">Đăng ký</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dangnhap">Đăng nhập</a>
+                            </li>
+                        <% } else { %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user-circle me-1"></i> Tài khoản
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="/admin">Quản lý</a>
+                                    <a class="dropdown-item" href="/dangxuat">Đăng xuất</a>
+                                </div>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="row">
+                <!-- Main content area - thay đổi thành layout card lớn và card nhỏ xen kẽ -->
+                <div class="col-lg-8">
+                    <!-- Featured post (bài viết nổi bật) -->
+                    <% if(typeof baiviet !== "undefined" && baiviet.length > 0) { %>
+                        <div class="card featured-post mb-5">
+                            <span class="category-badge"><%= baiviet[0].ChuDe.TenChuDe %></span>
+                            <img class="card-img" src="<%- firstImage(baiviet[0].NoiDung) %>" alt="<%= baiviet[0].TieuDe %>" />
+                            <div class="card-header">
+                                <div class="card-meta">
+                                    <a href="#"><time class="timeago" datetime="<%= baiviet[0].NgayDang %>"></time></a>
+                                </div>
+                                <a href="/baiviet/chitiet/<%= baiviet[0]._id %>">
+                                    <h2 class="card-title"><%= baiviet[0].TieuDe %></h2>
+                                </a>
+                                <p class="card-text"><%= baiviet[0].TomTat %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                    
+                    <!-- Grid layout mới cho các bài viết -->
+                    <div class="row">
+                        <% if(typeof baiviet !== "undefined") { 
+                            for(var i = 1; i < baiviet.length; i++) { 
+                                var bv = baiviet[i];
+                        %>
+                                <div class="col-md-6">
+                                    <div class="card post-card mb-4">
+                                        <span class="category-badge"><%= bv.ChuDe.TenChuDe %></span>
+                                        <img class="card-img" src="<%- firstImage(bv.NoiDung) %>" alt="<%= bv.TieuDe %>" />
+                                        <div class="card-header">
+                                            <div class="card-meta">
+                                                <a href="#"><time class="timeago" datetime="<%= bv.NgayDang %>"></time></a>
+                                            </div>
+                                            <a href="/baiviet/chitiet/<%= bv._id %>">
+                                                <h3 class="card-title"><%= bv.TieuDe %></h3>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                        <% 
+                                // Thêm quảng cáo sau mỗi 2 bài viết
+                                if((i+1) % 2 === 0 && i < baiviet.length - 1) { 
+                        %>
+                                <div class="col-12 mb-4">
+                                    <div class="ad-placeholder bg-light rounded-3 p-4 text-center">
+                                        <p class="text-muted mb-0">Quảng cáo</p>
+                                    </div>
+                                </div>
+                        <%
+                                }
+                            }
+                        } 
+                        %>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Trước</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Sau</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <!-- Sidebar - bố cục mới -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Widget giới thiệu -->
+                        <div class="card about-widget mb-4">
+                            <div class="card-body">
+                                <h3 class="sidebar-title">Về chúng tôi</h3>
+                                <p>SportsNews là trang tin thể thao hàng đầu, cung cấp tin tức mới nhất, phân tích chuyên sâu và bình luận về các sự kiện thể thao trong nước và quốc tế.</p>
+                                <div class="social-links mt-3">
+                                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Widget chuyên mục -->
+                        <div class="card categories-widget mb-4">
+                            <div class="card-body">
+                                <h3 class="sidebar-title">Chuyên mục</h3>
+                                <div class="tags">
+                                    <% if(typeof chuyenmuc !== "undefined") { chuyenmuc.forEach(cd => { %>
+                                        <a href="/baiviet/chude/<%= cd._id %>" class="tag"><%= cd.TenChuDe %></a>
+                                    <% }); } %>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Widget bài viết phổ biến -->
+                        <div class="card popular-widget mb-4">
+                            <div class="card-body">
+                                <h3 class="sidebar-title">Xem nhiều nhất</h3>
+                                <% if(typeof xemnhieunhat !== "undefined") { xemnhieunhat.forEach(bv => { %>
+                                    <div class="popular-post">
+                                        <img class="popular-post-img" src="<%- firstImage(bv.NoiDung) %>" alt="<%= bv.TieuDe %>" />
+                                        <div>
+                                            <a href="/baiviet/chitiet/<%= bv._id %>" class="popular-post-title"><%= bv.TieuDe %></a>
+                                            <div class="popular-post-meta">
+                                                <time class="timeago" datetime="<%= bv.NgayDang %>"></time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }); } %>
+                            </div>
+                        </div>
+                        
+                        <!-- Widget newsletter -->
+                        <div class="card newsletter-widget">
+                            <div class="card-body">
+                                <h3 class="sidebar-title">Nhận bản tin</h3>
+                                <p>Đăng ký để nhận tin tức mới nhất qua email</p>
+                                <form class="newsletter-form">
+                                    <input type="email" class="newsletter-input form-control" placeholder="Email của bạn" />
+                                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <%- include('footer') %>
+	<footer class="site-footer">
   <div class="container">
     <div class="footer-content">
       <div class="row">
@@ -742,6 +722,6 @@
     </div>
   </div>
 </footer>
-	<script src="https://trangtin-jcr5.onrender.com/js/app.js"></script>
+    <script src="https://trangtin-jcr5.onrender.com/js/app.js"></script>
 </body>
 </html>
